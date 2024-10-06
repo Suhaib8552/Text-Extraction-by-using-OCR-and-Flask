@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>loda</title>
+    <style>
+        #image-container {
+            position: relative;
+        }
+
+        #selection-overlay {
+            position: absolute;
+            border: 2px dashed red;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="image-container">
+        <a href="https://ibb.co/WfB8ppy"><img src="https://i.ibb.co/5Lspxx8/logo.jpg" alt="logo" border="0"></a>
+        <div id="selection-overlay"></div>
+    </div>
+
+    <script>
+        const imageContainer = document.getElementById('image-container');
+        const selectionOverlay = document.getElementById('selection-overlay');
+        let startX, startY, endX, endY;
+
+        imageContainer.addEventListener('mousedown', (e) => {
+            startX = e.clientX;
+            startY = e.clientY;
+
+            selectionOverlay.style.left = `${startX}px`;
+            selectionOverlay.style.top = `${startY}px`;
+            selectionOverlay.style.width = '0';
+            selectionOverlay.style.height = '0';
+            selectionOverlay.style.display = 'block';
+        });
+
+        imageContainer.addEventListener('mousemove', (e) => {
+            if (startX !== undefined && startY !== undefined) {
+                endX = e.clientX;
+                endY = e.clientY;
+
+                const width = endX - startX;
+                const height = endY - startY;
+
+                selectionOverlay.style.width = `${Math.abs(width)}px`;
+                selectionOverlay.style.height = `${Math.abs(height)}px`;
+                selectionOverlay.style.left = `${width > 0 ? startX : endX}px`;
+                selectionOverlay.style.top = `${height > 0 ? startY : endY}px`;
+            }
+        });
+
+        imageContainer.addEventListener('mouseup', () => {
+            // Perform OCR on the selected area (startX, startY, endX, endY)
+            console.log('Selected area:', startX, startY, endX, endY);
+
+            // Reset selection overlay
+            startX = undefined;
+            startY = undefined;
+            selectionOverlay.style.display = 'none';
+        });
+
+
+    </script>
+</body>
+
+</html>

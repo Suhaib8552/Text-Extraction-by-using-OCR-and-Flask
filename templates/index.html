@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Extraction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+    <style>
+        #image-container {
+            border: 1px solid black;
+            display: inline-block;
+            padding: 10px;
+            margin-right: 20px;
+        }
+
+        #text-container {
+            border: 1px solid black;
+            display: inline-block;
+            padding: 10px;
+        }
+        index{
+            text-align: center; 
+            font-weight: bold;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            overflow: hidden;
+            background: #1d2026;
+
+
+        }
+
+        ::-webkit-scrollbar {
+            width: 2rem;
+
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--black);
+
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--helper);
+        }
+
+        header {
+            background: #23242a;
+            color: #2b2121;
+            width: 100%;
+            height: 80px;
+            line-height: 30px;
+            padding: 0px 10px;
+            position: fixed;
+            display: flex;
+
+        }
+
+        .logo {
+            display: flex;
+            align-items: right;
+        }
+
+        .logo img {
+            width: 70px;
+            height: 80px;
+            margin-right: 10px;
+            text-align: center;
+            padding-left: 8%;
+
+
+        }
+
+        header .logo p {
+            display: flex;
+            font-size: 18px;
+            padding-right: 120%;
+            font-weight: bold;
+            float: right;
+            color: wheat;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+
+        }
+
+
+        header ul {
+            float: right;
+        }
+
+        header li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        header li a {
+            font-size: 18px;
+            text-transform: uppercase;
+            padding-left: 150px;
+            color: black;
+            text-decoration: none;
+        }
+
+        header li a:hover {
+            color: white;
+            transition: all 0.4s ease 0s;
+        }
+
+        #page {
+            padding-bottom: 40px;
+
+        }
+
+        /*CSS for Container*/
+        .container {
+            display: flex;
+
+
+
+        }
+
+        .panel {
+            float: left;
+            position: absolute;
+            width: 460px;
+            height: 320px;
+            left: 40px;
+            bottom: 120px;
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+            box-shadow: inset 3px 3px 3px 3px rgba(0, 0, 0, 0.25);
+            border-radius: 40px;
+             /* Allow vertical resizing */
+            resize:both;
+            overflow: auto;
+        }
+
+        .panel p {
+            display: flex;
+            font-size: 20px;
+            font-weight: bold;
+            float: left;
+            padding-left: 25%;
+            color: black;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+
+        }
+
+        input[type="file"] {
+            padding-top: 154%;
+            padding-left: 5%;
+            margin-left: 0;
+            display: none;
+        }
+
+        label {
+            display: block;
+            background-color: #992B2B;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            width: 130px;
+            padding: 8px 0;
+
+            border-radius: 5px;
+            margin: auto;
+            cursor: pointer;
+            font-family: "Rubik", sans-serif;
+
+        }
+
+        .button {
+            display: flex;
+            padding-left: 0vw;
+        }
+
+        .panel2 {
+            float: left;
+            position: absolute;
+
+            width: 460px;
+            height: 320px;
+            right: 40px;
+            bottom: 120px;
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+            box-shadow: inset 3px 4px 4px 3px rgba(0, 0, 0, 0.25);
+            border-radius: 40px;
+            resize: both;
+            overflow: auto;
+        }
+
+        .panel2 p {
+            display: flex;
+            font-size: 20px;
+            font-weight: bold;
+            float: left;
+            padding-left: 30%;
+            color: black;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* CSS for footer */
+
+        .footer {
+            bottom: 0px;
+            background: #23242a;
+            padding: 10px;
+            font-family: 'play', san-serif;
+            text-align: center;
+            display: flex;
+            height: 30px;
+            position: fixed;
+        }
+
+
+        .footer.footer {
+            width: 100%;
+            margin: 0% 0%;
+            padding: 0.6%;
+            font-size: 0.4em;
+
+        }
+
+        .footer ul {
+            width: 100%;
+            padding-left: 1px;
+            margin-left: 1px;
+        }
+
+        .footer li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        .footer li a {
+            font-size: 16px;
+            text-transform: uppercase;
+            padding: 0px 30px;
+            color: wheat;
+            text-decoration: none;
+        }
+
+        .footer li a:hover {
+            color: black;
+            transition: all 0.4s ease 0s;
+        }
+
+        .autocorrect {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        <header>
+            <div class="logo">
+
+                
+                <p style="padding-right: 5.5%;margin-left: 260%;">TEXT</p>
+                <p style="padding-right: 120%;"> EXTRACTOR</p>
+                
+
+
+            </div>
+
+
+        </header> <br>
+
+
+        <div class="container">
+            <div class="panel" id="panel1">
+                <p>
+                    Choose image/pdf
+                </p>
+
+
+
+
+
+            </div>
+
+
+            <div class="panel2">
+
+                <p>Extracted Text</p><br><br><br><br>
+
+                <div id="result" style="padding-left: 5%; overflow-y: auto; max-height: 66%;"></div>
+
+
+            </div>
+
+            <div class="button" style="margin-top: 34%;
+            
+                    display: flex;
+                 justify-content: space-between;
+
+                  width: 48%;
+
+            display: flex;
+            width: 100vw;">
+                <input type="file" id="file-input" onchange="handleFileSelect(event)" accept="image/*, .pdf" />
+                <label for="file-input" style="    margin-left: 8%;">
+                    <i class="fa-solid fa-upload"></i> &nbsp;
+                    Upload
+                </label>
+                <button onclick="downloadText()" id="download" style="width: 150px;
+                display: none;
+                margin-right: 17%;
+                padding: 2%;">Download</button>
+                <label for="download" style="    margin-left: 6%;">
+                    
+                    Download
+                </label>
+                <button onclick="copyText()" style="display: none;" id="Copy">Copy Text</button>
+                <label for="Copy" style="    margin-left: 25%;">
+                    
+                    COPY TEXT
+                </label>
+
+                <button onclick="takeSnip()" id="snip-button" style="display: none;">Snip</button>
+                <label for="snip-button" style="    margin-left: 3%;">
+                    
+                    TAKE SNIP
+                </label>
+                <button onclick="extractSnip()" id="extract-snip-button" style="display: none;">Extract Snip</button>
+                <label for="extract-snip-button" style="    margin-left: 3%; margin-right: 5%;">
+
+                    EXTRACT FROM SNIP
+                </label>
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+    <footer>
+        <div class="footer">
+            <ul>
+
+                <li> <a href="/contact">Contact Us</a></li>
+                <li> <a href="/softwareguide">Software Guide</a></li>
+                <li> <a href="/developersdetails">Developers Details</a></li>
+                <li> <a href="/about">About Us</a></li>
+                <li> <a href="/feedback">Feedback Form</a></li>
+            </ul>
+        </div>
+
+    </footer>
+
+    <script>
+
+        const fileInput = document.getElementById('file-input');
+        const preview = document.getElementById("preview")
+        const extractButton = document.getElementById('extract-button');
+        const imageContainer = document.getElementById('panel1');
+        const textContainer = document.getElementById('result');
+
+        fileInput.addEventListener("change", function () {
+            const file = fileInput.files[0];
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                const img = new Image();
+                img.src = reader.result;
+                preview.appendChild(img);
+
+            }
+
+
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/extract', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (file.type.includes('pdf')) {
+                            imageContainer.innerHTML = `<embed src="${URL.createObjectURL(file)}" width="100%" height="100%" type="application/pdf" />`;
+
+                        }
+                        else {
+                            imageContainer.innerHTML = `<img src="${URL.createObjectURL(file)}" width="100%" height="100%"  />`;
+                        }
+
+                        textContainer.innerHTML = '';
+                        const extractedText = data.text;
+
+                        // Split text into lines
+                        const lines = extractedText.split('\n');
+
+                        // Pagewise text container
+                        let pagewiseText = '';
+                        let pageNumber = 1;
+
+                        // Loop through lines and add pagewise text with line breaks
+                        lines.forEach((line, index) => {
+                            if (line.trim() !== '') {
+                                pagewiseText += line + '<br><br>';
+                            }
+                            
+                            if ((index + 1) % 32 === 0 && !file.type.includes('image')){
+                                // Add pagewise text to the result container
+                                const pageContainer = document.createElement('div');
+                                pageContainer.innerHTML = `<div style="text-align: center; font-weight: bold; margin-bottom: 10px;">Page ${pageNumber}</div>${pagewiseText}`;
+                                textContainer.appendChild(pageContainer);
+
+                                // Reset pagewise text for the next page
+                                pagewiseText = '';
+                                pageNumber++;
+                            }
+
+
+                        });
+                        if (pagewiseText !== '') {
+                            const pageContainer = document.createElement('div');
+                            pageContainer.innerHTML = pagewiseText;
+                            textContainer.appendChild(pageContainer);
+                        }
+                        textContainer.contentEditable = true;
+
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        });
+
+        function highlightAutocorrectedText(text) {
+            const words = text.split(' ');
+            const spell = new SpellChecker();
+            let highlightedText = '';
+
+            words.forEach(word => {
+                const correctedWord = spell.correction(word);
+                if (word.toLowerCase() !== correctedWord.toLowerCase()) {
+                    highlightedText += `<span class="autocorrected">${correctedWord}</span> `;
+                } else {
+                    highlightedText += word + ' ';
+                }
+            });
+
+            return highlightedText.trim();
+        }
+
+        let snippedImage = null;
+
+        // Function to handle the snip action
+        function takeSnip() {
+            // Get the file input element and the selected file
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+
+            // Create a FormData object and append the file to it
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Send a POST request to the snip route
+            fetch('/snip', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Display a success message or perform any other necessary actions
+                    console.log(data.message);
+                })
+                .catch(error => {
+                    // Handle any errors
+                    console.error('Error:', error);
+                });
+        }
+
+        // Function to extract text from the selected snipped region
+        function extractSnip() {
+            // Get the file input element and the selected file
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+
+            // Create a FormData object and append the file to it
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Send a POST request to the extract route
+            fetch('/extract', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the extracted text in the result div
+                    const resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = data.text;
+                    resultDiv.style.overflow="scroll";
+                })
+                .catch(error => {
+                    // Handle any errors
+                    console.error('Error:', error);
+                });
+        }
+
+
+
+
+        function downloadText() {
+            const textToDownload = document.getElementById('result').innerText;
+            const blob = new Blob([textToDownload], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'extracted_text.txt';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function copyText() {
+            const extractedText = document.getElementById('result').innerText;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = extractedText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Text copied to clipboard!');
+        }
+
+
+
+
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

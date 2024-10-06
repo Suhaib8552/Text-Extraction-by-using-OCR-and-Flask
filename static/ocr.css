@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+header {
+    background-color: #e0c9c9;
+    color: #2b2121;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+    width: 99vw;
+}
+
+.logo {
+    display: flex;
+    align-items: right;
+
+}
+
+.ongc {
+    display: flex;
+    padding-right: 150%;
+    text-align: center;
+    padding-left: 150%;
+}
+
+.logo img {
+    width: 70px;
+    height: 75px;
+    margin-right: 10px;
+    text-align: center;
+
+}
+
+.container {
+    display: flex;
+  }
+
+  .panel {
+    flex: 1;
+    
+    padding: 10px;
+    padding-bottom: 0;
+    max-width: 45%;
+
+    border-right: 2px solid hsl(10, 16%, 14%);
+    border-width: 60%;
+  }
+
+  .panel img {
+    max-width: 100%;
+    max-height: 100%;
+  }    
+
+.panel2{
+    overflow:scroll;
+    max-width: 45%;
+    max-height: 50vh;
+    padding-left: 20px;
+}
+
+.panel h2 {
+    margin-top: 0;
+    flex: 1;
+    padding: 20px;
+    background-color: #f2f2f2;
+}
+
+.panel textarea {
+    width: 100%;
+    height: 50%;
+    resize: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.panel button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#image-preview {
+    max-height: 5px;
+    max-width: 10px;
+    margin-bottom: 20px;
+}
+
+ footer {
+        border-top: solid 1px;
+        background-color: #333;
+        color: #dbcdcd;
+        width: 100%;
+        height: 120px;
+        padding-top: 5px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        padding-bottom: 5px;
+        margin-bottom: 0;
+    }
+.modal-content {
+    padding: 0;
+    margin: 0;
+}
+
+.btn{
+    
+    padding-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+   
+    margin-bottom: 0;
+}
+.close{
+    padding-bottom: 2px;
+}
+#p{
+    font-size: 6px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#imgBox{
+    align-content: center;
+    justify-content: center;
+    justify-items: end;
+}
+#imageUpload{
+    margin: 0;
+    padding-top: -10px;
+    padding-left: 10%;
+}

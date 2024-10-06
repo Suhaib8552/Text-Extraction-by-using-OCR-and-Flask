@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Developers</title>
+    <style>
+        /* CSS Styling for the group of developers detail section */
+        body {
+            font-family: Arial, sans-serif;
+            background: #1d2026;
+            min-height: 100%;
+
+        }
+
+        .footer {
+            bottom: 0px;
+            background: #23242a;
+            padding: 20px px;
+            font-family: 'play', san-serif;
+            text-align: center;
+            display: flex;
+            height: 30px;
+            position: fixed;
+        }
+
+
+        .footer.footer {
+            width: 100%;
+            margin: 0% 0%;
+            padding: 0.6%;
+            font-size: 0.4em;
+
+        }
+
+        .footer ul {
+            width: 100%;
+        }
+
+        .footer li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        .footer li a {
+            font-size: 18px;
+            text-transform: uppercase;
+            padding: 0px 60px;
+            color: wheat;
+            text-decoration: none;
+        }
+
+        .footer li a:hover {
+            color: black;
+            transition: all 0.4s ease 0s;
+        }
+
+        button[type="home"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 2%;
+            margin-left: 2%;
+
+
+        }
+
+        button[type="home"]:hover {
+            background-color: #45a049;
+
+
+        }
+
+        .developer-card {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+            border-radius: 4px;
+            margin-bottom: 7%;
+            
+        }
+
+        .developer-card h2 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .developer {
+            margin-bottom: 20px;
+        }
+
+        .developer .name {
+            font-weight: bold;
+        }
+
+        .developer .designation {
+            margin-top: 5px;
+            color: #888;
+        }
+
+        .developer .skills {
+            margin-top: 10px;
+        }
+
+        .developer .skills ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .developer .skills li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <button type="home">Home Page</button>
+    </div>
+    <div class="developer-card">
+
+        <section class="about-section">
+            <h2><u>Jamia Hamdard</u></h2>
+            <p>Jamia Hamdard  is an institute of higher education deemed to be university located in New Delhi, India Established in 1989, it is a government-funded university and was formally inaugurated by then Indian prime minister Rajiv Gandhi. In 2019, it was awarded Institute of Eminence status by Ministry of Human Resource Development.</p>
+            <h2><u>Our Growth Story</u></h2>The history of Jamia Hamdard begins with the establishment of a small Unani clinic in the year 1906 by Hakeem Hafiz Abdul Majeed, one of the well-known practitioners of Unani System of Medicine of his time. Hakeem Hafiz Abdul Majeed had a vision of making the practice of Unani Medicine into a scientific discipline so that Unani medicines could be dispensed in a more efficacious manner to patients. He gave the name “Hamdard” to his venture which means “sympathy for all and sharing of pain”. His illustrious son, Hakeem Abdul Hameed, carried forward the philosophy and objectives of Hamdard in independent India. Even at the time of partition of India in 1947, Hakeem Abdul Hameed was dreaming of setting up a complex of educational institutions which would concentrate on highlighting the contribution of Islam and Islamic culture to Indian civilization and development of Unani medicines for curing diseases
+        </section>
+
+        <section class="about-section">
+            <h2><u>Project Done by:</u></h2>
+            
+            <p>Suhaib Mirza</p>
+        </section>
+       
+
+        <script>
+
+            btnBack = document.querySelector('button');
+            btnBack.addEventListener('click', () => {
+                window.history.back();
+            });
+        </script>
+</body>
+
+</html>

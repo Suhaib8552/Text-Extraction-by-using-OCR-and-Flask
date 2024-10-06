@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 99%;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 4px;
+            background: transparent;
+            bottom: 5%;
+
+        }
+
+        button[type="home"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+
+
+        }
+
+        button[type="home"]:hover {
+            background-color: #45a049;
+
+
+        }
+
+
+        button[type="submit"] {
+
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .inputBox{
+            margin-bottom: 3%;
+        }
+    </style>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Messages | Firebase</title>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+
+    <body>
+        
+    <div>
+        <button type="home">Home Page</button>
+    </div>
+
+    <h2>Feedback Form</h2>
+        <div class="container">
+            <form action="" id="contactForm">
+                <div class="alert">Your message sent</div>
+
+                <div class="inputBox">
+                    <input type="text" id="name" placeholder="Your name...." />
+                </div>
+
+                <div class="inputBox">
+                    <input type="email" id="emailid" placeholder="Your Email....." />
+                </div>
+
+                <div class="inputBox" style="margin-bottom: 1%;">
+                    <textarea id="msgContent" cols="30" rows="10" placeholder="Message"></textarea>
+                </div>
+
+                <div class="inputBox" style="margin-left: 45%;">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
+
+
+
+
+        <script type="module">
+
+            const firebaseConfig = {
+                //   copy your firebase config informations
+            apiKey: "AIzaSyBTp7yo20qxM0cfrN0xvYk-znmdtxmz48k",
+            authDomain: "feedback-c3b4a.firebaseapp.com",
+            databaseURL: "https://feedback-c3b4a-default-rtdb.firebaseio.com",
+            projectId: "feedback-c3b4a",
+            storageBucket: "feedback-c3b4a.appspot.com",
+            messagingSenderId: "453241261951",
+            appId: "1:453241261951:web:5d75d8b3a0e5828551144a",
+            measurementId: "G-MZH1GZTY72"
+            };
+
+            // initialize firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // reference your database
+            var contactFormDB = firebase.database().ref("contactForm");
+
+            document.getElementById("contactForm").addEventListener("submit", submitForm);
+
+            function submitForm(e) {
+                e.preventDefault();
+
+                var name = getElementVal("name");
+                var emailid = getElementVal("emailid");
+                var msgContent = getElementVal("msgContent");
+
+                saveMessages(name, emailid, msgContent);
+
+                //   enable alert
+                document.querySelector(".alert").style.display = "block";
+
+                //   remove the alert
+                setTimeout(() => {
+                    document.querySelector(".alert").style.display = "none";
+                }, 3000);
+
+                //   reset the form
+                document.getElementById("contactForm").reset();
+            }
+
+            const saveMessages = (name, emailid, msgContent) => {
+                var newContactForm = contactFormDB.push();
+
+                newContactForm.set({
+                    name: name,
+                    emailid: emailid,
+                    msgContent: msgContent,
+                });
+            };
+
+            const getElementVal = (id) => {
+                return document.getElementById(id).value;
+            };
+
+        </script>
+
+
+    </body>
+
+    </html>

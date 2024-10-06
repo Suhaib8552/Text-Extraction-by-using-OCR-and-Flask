@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>developersdetails</title>
+    <style>
+        /* CSS Styling for the group of developers detail section */
+        body {
+            font-family: Arial, sans-serif;
+            background: #1d2026;
+            min-height: 100%;
+            
+        }
+        .footer {
+            bottom: 0px;
+            background: #23242a;
+            padding: 20px px;
+            font-family: 'play', san-serif;
+            text-align: center;
+            display: flex;
+            height: 30px;
+            position: fixed;
+        }
+
+
+        .footer.footer {
+            width: 100%;
+            margin: 0% 0%;
+            padding: 0.6%;
+            font-size: 0.4em;
+
+        }
+
+        .footer ul {
+            width: 100%;
+        }
+
+        .footer li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        .footer li a {
+            font-size: 18px;
+            text-transform: uppercase;
+            padding: 0px 60px;
+            color: wheat;
+            text-decoration: none;
+        }
+
+        .footer li a:hover {
+            color: black;
+            transition: all 0.4s ease 0s;
+        }
+
+
+        button[type="home"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 2%;
+            margin-left: 2%;
+
+
+        }
+
+        button[type="home"]:hover {
+            background-color: #45a049;
+
+
+        }
+
+        .developer-card {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+            border-radius: 4px;
+            margin-bottom: 7%;
+        }
+
+        .developer-card h2 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .developer {
+            margin-bottom: 20px;
+        }
+
+        .developer .name {
+            font-weight: bold;
+        }
+
+        .developer .designation {
+            margin-top: 5px;
+            color: #888;
+        }
+
+        .developer .skills {
+            margin-top: 10px;
+        }
+
+        .developer .skills ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .developer .skills li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button type="home">Home Page</button>
+    </div>
+ 
+    <div class="developer-card">
+        <h2><b><u><i>Developers Details</i></u></b></h2>
+        
+        <div class="developer">
+            <div class="name"> SUHAIB MIRZA</div>
+            
+            <div class="skills">
+
+                <ul>
+                    <li>E-Mail : suhaibmirza715@gmail.com</li>
+                    <li>Phone No. : 7017640024</li>
+
+                </ul>
+            </div>
+       
+    </div>
+    <script>
+
+        btnBack = document.querySelector('button');
+        btnBack.addEventListener('click', () => {
+            window.history.back();
+        });
+    </script>
+</body>
+
+</html>
