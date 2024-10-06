@@ -1,0 +1,1 @@
+# Text-Extraction-by-using-OCR-and-Flask
